@@ -1,0 +1,9 @@
+#= require jquery
+#= require jquery_ujs
+#= require turbolinks
+#= require iCheck/icheck
+#= require bootstrap
+#= require AdminLTE/app
+#= require select2/select2
+#= require goban/lumino.glyphs
+#= require_tree .

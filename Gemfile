@@ -15,9 +15,13 @@ gem "slim-rails"
 gem "font-awesome-rails"
 gem "select2-rails"
 gem "kaminari"
+gem "devise"
+gem "bootstrap-sass"
+gem "simple_form"
 
 group :development, :test do
   gem "byebug", platform: :mri
+  gem "pry"
 end
 
 group :development do
