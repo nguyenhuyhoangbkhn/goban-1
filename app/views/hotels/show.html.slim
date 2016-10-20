@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @hotel.name
+p
+  strong Countroom:
+  = @hotel.countRoom
+p
+  strong Introduction:
+  = @hotel.introduction
+p
+  strong Hotel kind:
+  = @hotel.hotel_kind
+p
+  strong Phone number:
+  = @hotel.phone_number
+p
+  strong Website:
+  = @hotel.website
+p
+  strong Score average:
+  = @hotel.score_average
+
+= link_to 'Edit', edit_hotel_path(@hotel)
+'|
+= link_to 'Back', hotels_path

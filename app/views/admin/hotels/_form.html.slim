@@ -1,0 +1,29 @@
+= simple_form_for @hotel, url: admin_hotels_url do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :countRoom
+    = f.input :introduction
+    = f.input :hotel_kind
+    = f.input :phone_number
+    = f.input :website
+    = f.input :score_average
+    .row
+      .col-sm-12
+        label Address
+        .col-sm-12
+          = f.fields_for :destination_addresses, @hotel.destination_addresses do |address|
+            = render "destination_address_fields", f: address
+        .col-sm-12
+          .links.btn.btn-default.clear-fix
+            = link_to_add_association 'add Address', f, :destination_addresses
+    .row
+      .col-sm-12
+        = f.fields_for :attachments, @hotel.attachments do |attachment|
+          = render "attachment_fields", f: attachment
+        .col-sm-12
+          .links.btn.btn-default
+            = link_to_add_association 'add image', f, :attachments
+  .form-actions
+    = f.button :submit

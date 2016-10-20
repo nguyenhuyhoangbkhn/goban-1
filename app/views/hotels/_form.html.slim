@@ -1,0 +1,36 @@
+= simple_form_for(@hotel) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :countRoom
+    = f.input :introduction
+    = f.input :hotel_kind
+    = f.input :phone_number
+    = f.input :website
+    = f.input :score_average
+    .row
+      .col-sm-12
+        label Address
+        = f.fields_for :destination_addresses do |address|
+          = address.hidden_field :addressable_id, value: @hotel.id
+          = address.hidden_field :addressable_type, value: "Hotel"
+          .form-group
+            .col-sm-3
+              = address.label :name, t(".name"), class: "control-label"
+            .col-sm-9.input-form
+              = address.input_field :name, class: "form-control"
+          .form-group
+            .col-sm-3
+              = address.label :village_id, t(".Village"), class: "control-label"
+            .col-sm-9.input-form
+              = address.input_field :village_id,
+                collection: Village.pluck(:name, :id),
+                class: "form-control", style: "width: 100%"
+          .form-group
+            .col-sm-3
+              = address.label :address, t(".address"), class: "control-label"
+            .col-sm-9.input-form
+              = address.input_field :address, class: "form-control"
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  countRoom: 1
+  introduction: MyText
+  hotel_kind: 1
+  phone_number: MyString
+  website: MyString
+  score_average: MyString
+
+two:
+  name: MyString
+  countRoom: 1
+  introduction: MyText
+  hotel_kind: 1
+  phone_number: MyString
+  website: MyString
+  score_average: MyString

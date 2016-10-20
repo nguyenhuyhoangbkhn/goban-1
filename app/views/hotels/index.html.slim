@@ -1,0 +1,33 @@
+h1 Listing hotels
+
+table
+  thead
+    tr
+      th Name
+      th Countroom
+      th Introduction
+      th Hotel kind
+      th Phone number
+      th Website
+      th Score average
+      th
+      th
+      th
+
+  tbody
+    - @hotels.each do |hotel|
+      tr
+        td = hotel.name
+        td = hotel.countRoom
+        td = hotel.introduction
+        td = hotel.hotel_kind
+        td = hotel.phone_number
+        td = hotel.website
+        td = hotel.score_average
+        td = link_to 'Show', hotel
+        td = link_to 'Edit', edit_hotel_path(hotel)
+        td = link_to 'Destroy', hotel, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Hotel', new_hotel_path
