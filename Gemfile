@@ -18,6 +18,10 @@ gem "kaminari"
 gem "devise"
 gem "bootstrap-sass"
 gem "simple_form"
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "cocoon"
+gem "mini_magick"
+gem "carrierwave"
 
 group :development, :test do
   gem "byebug", platform: :mri
@@ -29,6 +33,7 @@ group :development do
   gem "listen", "~> 3.0.5"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
+  gem "annotate", github: "ctran/annotate_models"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
