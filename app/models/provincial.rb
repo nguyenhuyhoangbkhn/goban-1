@@ -1,0 +1,2 @@
+class Provincial < ApplicationRecord
+end

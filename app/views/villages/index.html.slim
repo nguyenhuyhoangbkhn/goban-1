@@ -1,0 +1,27 @@
+h1 Listing villages
+
+table
+  thead
+    tr
+      th Name
+      th Ordinate
+      th Village kind
+      th District
+      th
+      th
+      th
+
+  tbody
+    - @villages.each do |village|
+      tr
+        td = village.name
+        td = village.ordinate
+        td = village.village_kind
+        td = village.district_id
+        td = link_to 'Show', village
+        td = link_to 'Edit', edit_village_path(village)
+        td = link_to 'Destroy', village, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Village', new_village_path

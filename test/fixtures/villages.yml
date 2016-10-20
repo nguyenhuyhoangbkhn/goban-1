@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  ordinate: MyString
+  village_kind: 1
+  district_id: 1
+
+two:
+  name: MyString
+  ordinate: MyString
+  village_kind: 1
+  district_id: 1
