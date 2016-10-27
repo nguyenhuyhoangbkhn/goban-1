@@ -1,5 +1,5 @@
 class HotelsController < ApplicationController
-  before_action :set_hotel, only: [:show, :edit, :update, :destroy]
+  before_action :set_hotel, only: [:show, :edit, :update]
 
   # GET /hotels
   # GET /hotels.json
@@ -10,31 +10,12 @@ class HotelsController < ApplicationController
   # GET /hotels/1
   # GET /hotels/1.json
   def show
-  end
-
-  # GET /hotels/new
-  def new
-    @hotel = Hotel.new
+    @hotel.comments.build
+    @comments = Comment.where(hotel_id: @hotel.id).order("created_at DESC")
   end
 
   # GET /hotels/1/edit
   def edit
-  end
-
-  # POST /hotels
-  # POST /hotels.json
-  def create
-    @hotel = Hotel.new(hotel_params)
-
-    respond_to do |format|
-      if @hotel.save
-        format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
-        format.json { render :show, status: :created, location: @hotel }
-      else
-        format.html { render :new }
-        format.json { render json: @hotel.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /hotels/1
@@ -51,16 +32,6 @@ class HotelsController < ApplicationController
     end
   end
 
-  # DELETE /hotels/1
-  # DELETE /hotels/1.json
-  def destroy
-    @hotel.destroy
-    respond_to do |format|
-      format.html { redirect_to hotels_url, notice: 'Hotel was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hotel
@@ -69,6 +40,7 @@ class HotelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.require(:hotel).permit(:name, :countRoom, :introduction, :hotel_kind, :phone_number, :website, :score_average)
+      params.require(:hotel).permit attachments_attributes: [:id, :image, :_destroy],
+        comments_attributes: [:id, :content]
     end
 end
