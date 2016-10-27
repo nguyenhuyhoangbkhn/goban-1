@@ -1,27 +1,56 @@
-p#notice = notice
+.panel.panel-default
+  .panel-body
+    .row
+      .col-md-4
+        = image_tag @hotel.attachments.first.image
+      .table-responsive
+        table.table
+          tbody
+            tr
+              td
+                strong
+                  | Name:
+              td
+                = @hotel.name
+            tr
+              td
+                strong
+                  | Introduction:
+              td
+                = @hotel.introduction
+            tr
+              td
+                strong
+                  | Hotel kind:
+              td
+                = @hotel.hotel_kind
+            tr
+              td
+                strong
+                  | Address:
+              td
+                - @hotel.destination_addresses.each do |address|
+                  = address.village.name
 
-p
-  strong Name:
-  = @hotel.name
-p
-  strong Countroom:
-  = @hotel.countRoom
-p
-  strong Introduction:
-  = @hotel.introduction
-p
-  strong Hotel kind:
-  = @hotel.hotel_kind
-p
-  strong Phone number:
-  = @hotel.phone_number
-p
-  strong Website:
-  = @hotel.website
-p
-  strong Score average:
-  = @hotel.score_average
+        = link_to "Write a Review", ""
+      .col-md-8
+        .form-comments
+          = simple_form_for Comment.new do |f|
+            = f.hidden_field :hotel_id, value: @hotel.id
 
-= link_to 'Edit', edit_hotel_path(@hotel)
-'|
-= link_to 'Back', hotels_path
+            .form-group
+              label Content
+              = f.input_field :content
+            .form-actions
+              = f.button :submit
+        .comments
+          - @comments.each do |comment|
+            .info-comment style="margin-bottom: 20px;"
+              .comment
+                = comment.content
+              .user.text-muted
+                = comment.user.email
+              .pull-rigth.text-muted
+                = comment.created_at
+              = link_to 'Edit', edit_comment_path(comment)
+              = link_to 'Destroy', comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete

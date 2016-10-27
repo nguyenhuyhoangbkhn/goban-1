@@ -22,7 +22,6 @@ class Admin::HotelsController < ApplicationController
 
   def create
     @hotel = Hotel.new(hotel_params)
-    binding.pry
     respond_to do |format|
       if @hotel.save
         format.html { redirect_to [:admin, @hotel], notice: 'Hotel was successfully created.' }

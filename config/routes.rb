@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-
-  resources :villages
-  resources :districts
-  resources :provincials
+  resources :comments
+  root "hotels#index"
   resources :hotels
 
+  devise_for :users
   devise_for :admin_users, path: "admin/", controllers: {
     sessions: "admin/sessions",
   }

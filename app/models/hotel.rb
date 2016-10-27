@@ -16,10 +16,11 @@
 
 class Hotel < ApplicationRecord
   has_many :attachments, inverse_of: :hotel
+  has_many :comments, inverse_of: :hotel
   has_many :destination_addresses, inverse_of: :hotel
 
   accepts_nested_attributes_for :destination_addresses,
     reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :attachments,
+  accepts_nested_attributes_for :attachments, :comments,
     reject_if: :all_blank, allow_destroy: true
 end
