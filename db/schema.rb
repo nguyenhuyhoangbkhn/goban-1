@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027154549) do
+ActiveRecord::Schema.define(version: 20161123172852) do
 
   create_table "admin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -30,13 +30,15 @@ ActiveRecord::Schema.define(version: 20161027154549) do
   end
 
   create_table "attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "hotel_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "picture"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 20161027154549) do
     t.integer  "hotel_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "picture"
   end
 
   create_table "destination_addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -71,18 +74,37 @@ ActiveRecord::Schema.define(version: 20161027154549) do
     t.string   "name"
     t.integer  "countRoom"
     t.text     "introduction",  limit: 65535
-    t.integer  "hotel_kind"
     t.string   "phone_number"
     t.string   "website"
     t.string   "score_average"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "price"
+    t.string   "hotel_kind"
   end
 
   create_table "provincials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "ordinate"
     t.integer  "province_kind"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "rate_hotels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "hotel_id"
+    t.integer  "user_id"
+    t.integer  "admin_user_id"
+    t.integer  "rating"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "rating"
+    t.integer  "hotel_id"
+    t.integer  "user_id"
+    t.integer  "admin_user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -100,6 +122,7 @@ ActiveRecord::Schema.define(version: 20161027154549) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

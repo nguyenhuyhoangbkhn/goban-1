@@ -1,4 +1,4 @@
-= simple_form_for @village, url: admin_villages_path do |f|
+= simple_form_for [:admin, @village] do |f|
   = f.error_notification
 
   .form-inputs

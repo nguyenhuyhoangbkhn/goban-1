@@ -1,13 +1,18 @@
 .jumbotron
-  h1 Goban Team
+  h1 Welcome to Hotel Review
 .row
   - @hotels.each do |hotel|
-    .col-md-4
-      .main_inner style="margin-bottom: 20px;"
-        = link_to hotel_path(hotel), class: "hotel-link" do
-          .hotel-image
-            = image_tag hotel.attachments.first.image.url
-          .hotel-name
-            h3
-              .text-center
-                = hotel.name
+    .col-sm-4
+      .well.well-sm
+        = image_tag hotel.attachments.first.picture,  class: "img-responsive img-home-content",
+          alt:"Cinque Terre"
+        .title-hotel
+          h3.text-center
+            = link_to hotel.name, hotel_path(hotel)
+        .row
+          .col-sm-7
+            .star-rating data-score="#{hotel.avg_rate}"
+          .col-sm-5
+            = hotel&.price
+            label $
+        /! hien thi duoi dang star

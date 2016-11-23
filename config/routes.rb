@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :districts
     resources :provincials
     resources :hotels
+    resources :reviews, only: :update
   end
 
+  resources :reviews
 end

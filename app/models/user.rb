@@ -15,6 +15,7 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  name                   :string(255)
 #
 # Indexes
 #
@@ -28,5 +29,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 end
