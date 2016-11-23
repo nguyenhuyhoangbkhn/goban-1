@@ -4,26 +4,38 @@ class Admin::HotelsController < ApplicationController
   before_action :authenticate_admin_user!
 
   def index
-    @hotels = Hotel.all
+    @hotels = Hotel.page(params[:page]).per params[:per_page]
   end
 
+  def search
+    if params[:search].present?
+      @hotels = Hotel.search(params[:search])
+    else
+      @hotels = Hotel.all
+    end
+  end
 
   def show
+    @review = Review.where(hotel_id: @hotel.id, admin_user_id: current_admin_user.id).first
+    @hotels = Hotel.order('avg_rate ASC')
   end
 
   def new
     @hotel = Hotel.new
     @hotel.destination_addresses.build
     @hotel.attachments.build
+    @review = Review.new
   end
 
   def edit
+    @review = Review.where(hotel_id: @hotel.id, admin_user_id: current_admin_user.id).first
   end
 
   def create
     @hotel = Hotel.new(hotel_params)
     respond_to do |format|
       if @hotel.save
+        @hotel.reviews.create! rating: params[:review][:rating], admin_user_id: current_admin_user.id
         format.html { redirect_to [:admin, @hotel], notice: 'Hotel was successfully created.' }
         format.json { render :show, status: :created, location: @hotel }
       else
@@ -51,15 +63,16 @@ class Admin::HotelsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_hotel
-      @hotel = Hotel.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_hotel
+    @hotel = Hotel.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def hotel_params
-      params.require(:hotel).permit :name, :countRoom, :introduction, :hotel_kind, :phone_number, :website, :score_average,
-        destination_addresses_attributes: [:id, :name, :village_id, :address, :destroy],
-        attachments_attributes: [:id, :image, :_destroy]
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def hotel_params
+    params.require(:hotel).permit :name, :countRoom, :price, :introduction, :hotel_kind, :phone_number, :website, :score_average,
+      destination_addresses_attributes: [:id, :name, :village_id, :address, :destroy],
+      attachments_attributes: [:id, :picture, :_destroy],
+      reviews_attributes: [:id, :rating, :_destroy]
+  end
 end

@@ -22,7 +22,7 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem "cocoon"
 gem "mini_magick"
 gem "carrierwave"
-
+gem "searchkick"
 group :development, :test do
   gem "byebug", platform: :mri
   gem "pry"

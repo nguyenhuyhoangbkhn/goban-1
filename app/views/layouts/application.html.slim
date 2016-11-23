@@ -1,17 +1,14 @@
 doctype html
 html
   head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
-    meta charset="utf-8" /
-    meta content="width=device-width, initial-scale=1" name="viewport"
-    title Admin - Dashboard
-    = stylesheet_link_tag "application", media: "all", 'data-turbolinks-track' => true
-    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Hotel Review
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-
   body
     = render 'layouts/header'
     .container
-      #main
-        = yield
-    = render 'layouts/footer'
+      - flash.each do |name, msg|
+        = content_tag(:div, msg, class: "alert alert-info")
+      = yield

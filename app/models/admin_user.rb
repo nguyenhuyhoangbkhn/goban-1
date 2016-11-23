@@ -15,6 +15,13 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  address                :string(255)
+#  tel                    :string(255)
+#  bio                    :string(255)
+#  job                    :string(255)
+#  edu                    :string(255)
+#  name                   :string(255)
+#  birthday               :datetime
 #
 # Indexes
 #
@@ -26,5 +33,13 @@ class AdminUser < ApplicationRecord
   extend Devise::Models
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable
+  has_many :reviews, dependent: :destroy
+  has_many :attachments, as: :attachable, dependent: :destroy
+  accepts_nested_attributes_for :attachments,
+    reject_if: :all_blank, allow_destroy: true
+  has_one :avatar, as: :attachable, dependent: :destroy
+  validates :avatar, presence: true
+  accepts_nested_attributes_for :avatar
 end

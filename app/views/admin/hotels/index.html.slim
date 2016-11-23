@@ -1,34 +1,30 @@
 h1 Listing hotels
-
-table
-  thead
-    tr
-      th Name
-      th Countroom
-      th Introduction
-      th Hotel kind
-      th Phone number
-      th Website
-      th Score average
-      th
-      th
-      th
-
-  tbody
-    - @hotels.each do |hotel|
-      tr
-        td = hotel.name
-        td = hotel.countRoom
-        td = hotel.introduction
-        td = hotel.hotel_kind
-        td = hotel.phone_number
-        td = hotel.website
-        td = hotel.score_average
-        td = link_to 'Show', admin_hotel_path(hotel)
-        td = link_to 'Edit', edit_admin_hotel_path(hotel)
-        td = link_to 'Destroy', admin_hotel_path(hotel), data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-.btn.btn-defautl
-  = link_to 'New Hotel', new_admin_hotel_path
+.row
+  .col-sm-12
+    table.table.table-striped.table-hover.table-bordered
+      thead
+        tr
+          th Name
+          th Countroom
+          th Introduction
+          th Hotel kind
+          th Phone number
+          th Website
+          th Score average
+          th.text-center[colspan="3"]= t(".actions")
+      tbody
+        - @hotels.each do |hotel|
+          tr
+            td = hotel.name
+            td = hotel.countRoom
+            td = hotel.introduction
+            td = hotel.hotel_kind
+            td = hotel.phone_number
+            td = hotel.website
+            td.star-rating data-score="#{hotel.avg_rate}"
+            td = link_to 'Show', admin_hotel_path(hotel), class: "show-hotel"
+            td = link_to 'Edit', edit_admin_hotel_path(hotel), class: "show-hotel"
+            td = link_to 'Destroy', admin_hotel_path(hotel), data: { confirm: 'Are you sure?' }, method: :delete
+    .pull-right = paginate @hotels
+  .btn.btn-defautl.btn-primary style="margin-top: 50px;"
+    = link_to 'New Hotel', new_admin_hotel_path, class: "show-hotel"

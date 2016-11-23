@@ -15,6 +15,13 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  name                   :string(255)
+#  address                :string(255)
+#  tel                    :string(255)
+#  bio                    :string(255)
+#  job                    :string(255)
+#  edu                    :string(255)
+#  birthday               :datetime
 #
 # Indexes
 #
@@ -28,5 +35,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_one :avatar, as: :attachable, dependent: :destroy
+  # validates :avatar, presence: true
+  accepts_nested_attributes_for :avatar
 end

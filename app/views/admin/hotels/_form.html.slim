@@ -1,14 +1,14 @@
-= simple_form_for @hotel, url: admin_hotels_url do |f|
+= simple_form_for [:admin, @hotel] do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :name
+    = f.input :price
     = f.input :countRoom
     = f.input :introduction
     = f.input :hotel_kind
     = f.input :phone_number
     = f.input :website
-    = f.input :score_average
     .row
       .col-sm-12
         label Address
@@ -25,5 +25,14 @@
         .col-sm-12
           .links.btn.btn-default
             = link_to_add_association 'add image', f, :attachments
-  .form-actions
+    .row
+      .col-sm-12
+        label Rate
+        .col-sm-12
+          - if @hotel.new_record?
+            #star-rating
+          - else
+            .star-rating.js-update-rate data-score="#{@hotel.reviews.where(admin_user: current_admin_user).first.rating}"
+
+  .btn.btn-defautl.btn-primary style="margin-top: 50px;"
     = f.button :submit
