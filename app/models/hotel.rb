@@ -15,12 +15,18 @@
 #
 
 class Hotel < ApplicationRecord
-  has_many :attachments, inverse_of: :hotel
-  has_many :comments, inverse_of: :hotel
-  has_many :destination_addresses, inverse_of: :hotel
+  has_many :attachments, as: :attachable, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :destination_addresses, dependent: :destroy
+  has_many :rate_hotels, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
-  accepts_nested_attributes_for :destination_addresses,
+  accepts_nested_attributes_for :destination_addresses, :rate_hotels,
     reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :attachments, :comments,
+  accepts_nested_attributes_for :attachments, :comments, :reviews,
     reject_if: :all_blank, allow_destroy: true
+
+  def avg_rate
+    reviews.map{|review| review&.rating}.sum
+  end
 end

@@ -1,4 +1,4 @@
-= simple_form_for @hotel, url: admin_hotels_url do |f|
+= simple_form_for [:admin, @hotel] do |f|
   = f.error_notification
 
   .form-inputs
@@ -25,5 +25,31 @@
         .col-sm-12
           .links.btn.btn-default
             = link_to_add_association 'add image', f, :attachments
+    .row
+      .col-sm-12
+        label Rate
+        .col-sm-12
+          - if @hotel.new_record?
+            #star-rating
+          - else
+            .star-rating.js-update-rate data-score="#{@review.rating}"
+            = link_to "rerating", "#", data: {target: "#js-rerating", toggle: "modal"}
   .form-actions
     = f.button :submit
+- unless @hotel.new_record?
+  .modal.inmodal.fade#js-rerating tabindex="-1" role="dialog" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal"
+            span aria-hidden="true" ×
+          h4.modal-title Rating hotel
+
+        .modal-body
+          = form_for @review, url: admin_review_path, method: :patch do |f|
+            #star-rating
+            .modal-footer
+              button.btn.btn-default type="button" data-dismiss="modal"
+                = t ".cancel"
+              .btn.btn-primary
+                = f.submit "OK"

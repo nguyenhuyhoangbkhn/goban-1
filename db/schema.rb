@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027154549) do
+ActiveRecord::Schema.define(version: 20161122180530) do
 
   create_table "admin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -30,13 +30,15 @@ ActiveRecord::Schema.define(version: 20161027154549) do
   end
 
   create_table "attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "hotel_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "picture"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 20161027154549) do
     t.integer  "hotel_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "picture"
   end
 
   create_table "destination_addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -83,6 +86,24 @@ ActiveRecord::Schema.define(version: 20161027154549) do
     t.string   "name"
     t.string   "ordinate"
     t.integer  "province_kind"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "rate_hotels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "hotel_id"
+    t.integer  "user_id"
+    t.integer  "admin_user_id"
+    t.integer  "rating"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "rating"
+    t.integer  "hotel_id"
+    t.integer  "user_id"
+    t.integer  "admin_user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

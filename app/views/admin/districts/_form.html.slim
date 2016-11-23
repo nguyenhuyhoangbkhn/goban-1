@@ -1,4 +1,4 @@
-= simple_form_for @district, url: admin_districts_url do |f|
+= simple_form_for [:admin, @district] do |f|
   = f.error_notification
 
   .form-inputs

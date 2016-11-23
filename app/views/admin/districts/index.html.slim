@@ -18,9 +18,9 @@ table
         td = district.ordinate
         td = district.district_kind
         td = district.provincial_id
-        td = link_to 'Show', district
+        td = link_to 'Show', admin_district_path(district)
         td = link_to 'Edit', edit_admin_district_path(district)
-        td = link_to 'Destroy', district, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to 'Destroy', admin_district_path(district), data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 .btn.btn-defautl

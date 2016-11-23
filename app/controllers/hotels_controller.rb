@@ -41,6 +41,6 @@ class HotelsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
       params.require(:hotel).permit attachments_attributes: [:id, :image, :_destroy],
-        comments_attributes: [:id, :content]
+        comments_attributes: [:id, :picture, :content, :_destroy]
     end
 end

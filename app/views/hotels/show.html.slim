@@ -1,56 +1,108 @@
-.panel.panel-default
-  .panel-body
-    .row
-      .col-md-4
-        = image_tag @hotel.attachments.first.image
-      .table-responsive
-        table.table
-          tbody
-            tr
-              td
-                strong
-                  | Name:
-              td
+.row
+  .col-md-10
+    .panel.panel-default
+      .panel-body
+        .row style="margin-bottom: 320px;"
+          .form-group
+            .col-md-7
+              = image_tag @hotel.attachments.first.picture, witdh: 520, height: 320
+              .star-rating data-score="#{@hotel.avg_rate}"
+              em = "#{@hotel.reviews.length} reviews"
+
+
+            .col-md-5
+              .form-group
                 = @hotel.name
-            tr
-              td
-                strong
-                  | Introduction:
-              td
-                = @hotel.introduction
-            tr
-              td
-                strong
-                  | Hotel kind:
-              td
-                = @hotel.hotel_kind
-            tr
-              td
-                strong
-                  | Address:
-              td
-                - @hotel.destination_addresses.each do |address|
-                  = address.village.name
+              .star-rating data-score="#{@hotel.avg_rate}"
+              em = "#{@hotel.reviews.length} reviews"
+              .form-group
+                - if user_signed_in?
+                  - if current_user.reviews.where(hotel_id: @hotel.id).present?
+                    = link_to "you are rated, are you rerate this hotel", "#", data: {target: "#js-rerating", toggle: "modal"}
+                  - else
+                    = link_to "Rate this Hotel", "#", data: {target: "#js-rerating", toggle: "modal"}
+                - else
+                  = "sigin to do rate hotel"
+          .form-group
+            table.table.table-hover
+              tbody
+                tr
+                  td
+                    strong
+                      | Name:
+                  td
+                    = @hotel.name
+                tr
+                  td
+                    strong
+                      | Introduction:
+                  td
+                    = @hotel.introduction
+                tr
+                  td
+                    strong
+                      | Hotel kind:
+                  td
+                    = @hotel.hotel_kind
+                tr
+                  td
+                    strong
+                      | Address:
+                  td
+                    - @hotel.destination_addresses.each do |address|
+                      = address.village.name
 
-        = link_to "Write a Review", ""
-      .col-md-8
-        .form-comments
-          = simple_form_for Comment.new do |f|
-            = f.hidden_field :hotel_id, value: @hotel.id
+        = link_to "Write a Review", "#"
+        .row
+          .col-md-12
+            .form-comments style="margin-bottom: 30px;"
+              = simple_form_for Comment.new do |f|
+                = f.hidden_field :hotel_id, value: @hotel.id
+                .form-group
+                  label Picture
+                  = f.file_field :picture
+                .form-group
+                  label Content
+                  = f.input_field :content
+                .form-actions
+                  = f.button :submit
+            .comments
+              - @comments.each do |comment|
+                .picture
+                  = comment&.picture
+                .info-comment style="margin-bottom: 20px;"
+                  .comment
+                    = comment.content
+                  .user.text-muted
+                    = comment.user.email
+                  .pull-rigth.text-muted
+                    = comment.created_at
+                  = link_to 'Edit', edit_comment_path(comment)
+                  = link_to 'Destroy', comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete
+  .col-md-2
+    .panel.panel-default
+      .panel-header
+      .panel-body
+        .panel-title
+          = t(".abcd")
+        .abcd
+          = t("cascasc")
 
-            .form-group
-              label Content
-              = f.input_field :content
-            .form-actions
-              = f.button :submit
-        .comments
-          - @comments.each do |comment|
-            .info-comment style="margin-bottom: 20px;"
-              .comment
-                = comment.content
-              .user.text-muted
-                = comment.user.email
-              .pull-rigth.text-muted
-                = comment.created_at
-              = link_to 'Edit', edit_comment_path(comment)
-              = link_to 'Destroy', comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete
+
+.modal.inmodal.fade#js-rerating tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" ×
+        h4.modal-title Rating hotel
+
+      .modal-body
+        / = form_for @review, url: review_path, method: :patch do |f|
+        /   #star-rating
+        /   = f.hidden_field :hotel_id, value: @hotel.id
+      .modal-footer
+        button.btn.btn-default type="button" data-dismiss="modal"
+          = t ".cancel"
+        .btn.btn-primary
+          = "OK"

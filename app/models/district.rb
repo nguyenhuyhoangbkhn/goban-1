@@ -16,6 +16,6 @@
 #
 
 class District < ApplicationRecord
-  belongs_to :provincial
+  belongs_to :provincial, optional: true
   has_many :villages, inverse_of: :district
 end

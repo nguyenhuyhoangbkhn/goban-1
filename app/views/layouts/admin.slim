@@ -10,8 +10,10 @@ html
     = csrf_meta_tags
 
   body
-    = render "layouts/navbar_admin"
-    = render "layouts/sidebar_admin"
+    .nav-bar
+      = render "layouts/navbar_admin"
+    .side-bard
+      = render "layouts/sidebar_admin"
     .col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2
       = yield
-    = render "layouts/footer_admin"
+      .clear-fix
