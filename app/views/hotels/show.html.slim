@@ -1,5 +1,5 @@
 .row
-  .col-md-10
+  .col-md-9
     .panel.panel-default
       .panel-body
         .row style="margin-bottom: 30px;"
@@ -59,34 +59,28 @@
           label
             strong Introduction:
           = @hotel.introduction
-        .col-sm-12 style="margin-bottom: 20px;"
-          = link_to "Write a Review", "#", data: {target: " #js-comment", toggle: "modal"}
     .row
+      .col-sm-12
+        .form-group
+          - if user_signed_in?
+            p Write your comment in bellow form
+          - else
+            p Please sigin to do write your comment
       .col-md-12
-        .comments style="margin-bottom: 10px;"
-          - @comments.each do |comment|
-            .col-md-2
-              .picture
-                - if comment.picture.present?
-                  = image_tag comment&.picture, width: 100, height: 100
-            .col-md-10
-              .info-comment style="margin-bottom: 20px;"
-                .comment
-                  = comment.content
-                .user.text-muted
-                  = comment.user.email
-                .pull-rigth.text-muted
-                  = comment.created_at
-                - if comment.user == current_user
-                  = link_to 'Edit', "#!", data: {comment: comment, target: "#js-edit-comment", toggle: "modal"}
-                  = link_to 'Destroy', comment_path(comment), data: { confirm: 'Are you sure?' }, method: :delete
-            .clear-fix
-  .col-md-2
+        #comment-form
+          = render 'shared/comment_form' if user_signed_in?
+        .row
+          - if @hotel.comments.any?
+            ol.hotel.row
+              #comments
+                = render @comments
+            / = paginate @comments
+  .col-md-3
     .panel.panel-default
       .panel-header
       .panel-body
         .panel-title
-          = t(".abcd")
+          = t(".Top Hotel")
         .abcd
           .row
             - @hotels.each do |hotel|
@@ -131,23 +125,3 @@
                   = t ".cancel"
                 .btn.btn-primary
                   = f.submit "OK", class: "rate-success"
-.modal.inmodal.fade#js-comment tabindex="-1" role="dialog" aria-hidden="true"
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button.close type="button" data-dismiss="modal"
-            span aria-hidden="true" ×
-          h4.modal-title Rating hotel
-
-        .modal-body
-          = simple_form_for(@comment) do |f|
-            = f.error_notification
-            = f.input :hotel_id, value: @hotel.id
-            = f.input :user_id, value: current_user.id
-
-            .form-inputs
-              = f.input :picture, as: :file
-              = f.input :content
-
-            .form-actions
-              = f.button :submit

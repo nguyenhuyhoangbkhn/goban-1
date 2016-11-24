@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Avatar.create! attachable_type: "AdminUser", attachable_id: 1
+
+avatar = Avatar.first
+
+AdminUser.create! email: "admin@mail.com", password: "12345678", password_confirmation: "12345678",
+  avatar: avatar, role: "admin"
+User.create! email: "user@mail.com", password: "12345678", password_confirmation: "12345678"

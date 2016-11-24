@@ -1,0 +1,21 @@
+= simple_form_for [:admin, @admin_user] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :email
+    = f.input :tel
+    = f.input :birthday
+    = f.input :job
+    = f.input :bio
+    = f.input :edu
+    = f.input :password
+    = f.input :password_confirmation
+
+    .row
+      .col-sm-12
+        = f.fields_for :avatar, @admin_user.avatar do |avatar|
+          = avatar.input_field :picture, as: :file
+
+  .btn.btn-defautl.btn-primary style="margin-top: 50px;"
+    = f.button :submit

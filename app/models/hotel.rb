@@ -16,6 +16,7 @@
 #
 
 class Hotel < ApplicationRecord
+  searchkick
   has_many :attachments, as: :attachable, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :destination_addresses, dependent: :destroy
@@ -28,9 +29,17 @@ class Hotel < ApplicationRecord
     reject_if: :all_blank, allow_destroy: true
 
   validates :name, :price, presence: true
-  validates :reviews, presence: true
-  scope :highest_rated, -> {includes(:reviews).group('hotel_id').order('AVG(reviews.rating) ASC')}
+
+  # scope :by_score, joins: :reviews, group: "hotels.id", order: "AVG(reviews.rating) DESC"
+
   def avg_rate
-    reviews.map{|review| review&.rating}.sum / reviews.length
+    if reviews.present?
+      calculate_rate = reviews.inject(0) do |sum, review|
+        sum + review.try(:rating).to_i
+      end
+      (calculate_rate/reviews.count)
+    else
+      return 0
+    end
   end
 end

@@ -1,5 +1,5 @@
 class Admin::HotelsController < ApplicationController
-    before_action :set_hotel, only: [:show, :edit, :update, :destroy]
+  before_action :set_hotel, only: [:show, :edit, :update, :destroy]
   layout "admin"
   before_action :authenticate_admin_user!
 
@@ -7,6 +7,13 @@ class Admin::HotelsController < ApplicationController
     @hotels = Hotel.page(params[:page]).per params[:per_page]
   end
 
+  def search
+    if params[:search].present?
+      @hotels = Hotel.search(params[:search])
+    else
+      @hotels = Hotel.all
+    end
+  end
 
   def show
     @review = Review.where(hotel_id: @hotel.id, admin_user_id: current_admin_user.id).first

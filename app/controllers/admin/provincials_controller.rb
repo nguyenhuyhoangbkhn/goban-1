@@ -27,7 +27,6 @@ class Admin::ProvincialsController < ApplicationController
   # POST /provincials
   # POST /provincials.json
   def create
-    binding.pry
     @provincial = Provincial.new(provincial_params)
 
     # respond_to do |format|

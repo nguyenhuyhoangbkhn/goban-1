@@ -15,5 +15,5 @@ class Comment < ApplicationRecord
   mount_uploader :picture, AttachmentUploader
   belongs_to :hotel, optional: true
   belongs_to :user, optional: true
-  validates :content,:user_id, :hotel_id, presence: true
+  validates :content, presence: true
 end
