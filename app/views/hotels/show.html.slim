@@ -41,24 +41,25 @@
               .form-group
                 label
                   strong Hotel Kind :
-                = @hotel.hotel_kind
+                =< @hotel.hotel_kind
               .form-group
                 label
                   strong Price :
-                = @hotel.hotel_kind
+                =< @hotel.price
+                label $
               .form-group
                 label
                   strong countRoom :
-                = @hotel.countRoom
+                =< @hotel.countRoom
         .form-group
           label
             strong Address :
           - @hotel.destination_addresses.each do |address|
-            = address.village.name
+            =< address.village.name
         .form-group
           label
             strong Introduction:
-          = @hotel.introduction
+          =< @hotel.introduction
     .row
       .col-sm-12
         .form-group
@@ -94,7 +95,7 @@
                   .col-sm-7
                     .star-rating data-score="#{hotel.avg_rate}"
                   .col-sm-5
-                    = hotel&.countRoom
+                    = hotel&.price
                     label $
 
 - if user_signed_in?

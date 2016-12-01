@@ -17,7 +17,7 @@ h1 Listing hotels
           tr
             td = hotel.name
             td = hotel.countRoom
-            td = hotel.introduction
+            td = hotel.introduction.truncate(80)
             td = hotel.hotel_kind
             td = hotel.phone_number
             td = hotel.website
