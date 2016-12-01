@@ -4,6 +4,7 @@ h1 Listing hotels
     table.table.table-striped.table-hover.table-bordered
       thead
         tr
+          th Image
           th Name
           th Countroom
           th Introduction
@@ -15,6 +16,9 @@ h1 Listing hotels
       tbody
         - @hotels.each do |hotel|
           tr
+            td
+              - unless hotel.attachments.nil?
+                = image_tag hotel.attachments.first.picture, class: "img-thumbnail", width: 150, heigth: 150
             td = hotel.name
             td = hotel.countRoom
             td = hotel.introduction.truncate(80)

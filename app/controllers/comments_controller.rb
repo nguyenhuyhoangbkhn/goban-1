@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     @comment = @hotel.comments.find_by id: params[:id]
     @comment.destroy
     flash[:success] = 'Comment deleted.'
-    redirect_to hotel_path(@hotel)
+    redirect_to :back
   end
 
   def update

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
     resources :reviews, only: :update
     resources :admin_users
+    resources :users
   end
 
   resources :reviews

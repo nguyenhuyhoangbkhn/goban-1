@@ -8,8 +8,6 @@ $ ->
     readOnly: true
     score: ->
       $(this).attr 'data-score'
-  $(".show-hotel").on "click", ->
-    window.location.reload();
   $(".rate-success").on "click", ->
     $("#js-rerating").modal("hide")
     alert "Rate Success"
