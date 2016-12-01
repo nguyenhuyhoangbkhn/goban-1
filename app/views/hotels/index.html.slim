@@ -8,7 +8,7 @@
           alt:"Cinque Terre"
         .title-hotel
           h3.text-center
-            = link_to hotel.name, hotel_path(hotel), class: "show-hotel"
+            = link_to hotel.name, hotel_path(hotel)
         .row
           .col-sm-7
             .star-rating data-score="#{hotel.avg_rate}"

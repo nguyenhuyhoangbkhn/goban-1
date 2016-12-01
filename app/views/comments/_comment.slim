@@ -26,7 +26,7 @@ br
                 = link_to "delete", hotel_comment_path(@hotel, comment), method: :delete,
                       data: { confirm: "You sure?" }
               li
-                 a data-target="#myModal-#{comment.id}" data-toggle="modal" href="#"  Edit
+                a data-target="#myModal-#{comment.id}" data-toggle="modal" href="#"  Edit
 .modal.fade aria-hidden="true" aria-labelledby="myModalLabel" id="myModal-#{comment.id}" role="dialog" tabindex="-1"
   .modal-dialog
     .modal-content

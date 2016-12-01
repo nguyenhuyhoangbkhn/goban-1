@@ -1,29 +1,15 @@
 #sidebar-collapse.col-sm-3.col-lg-2.sidebar
   ul.nav.menu
     li.active
-      = link_to admin_hotels_path do
+      = link_to admin_hotels_path, class: "show-hotel" do
         i.glyphicon.glyphicon-globe>
         span DasBoard
     li
-      = link_to admin_hotels_path do
+      = link_to admin_hotels_path, class: "show-hotel" do
         i.glyphicon.glyphicon-link>
         span Hotels
     li
       = link_to admin_admin_users_path do
         i.glyphicon.glyphicon-link>
         span AdminUsers
-    li
-      = link_to admin_provincials_path do
-        i.glyphicon.glyphicon-link>
-        span Provincials
-
-    li
-      = link_to admin_districts_path do
-        i.glyphicon.glyphicon-link>
-        span Districts
-
-    li
-      = link_to admin_villages_path do
-        i.glyphicon.glyphicon-link>
-        span Villages
 .clear-fix
