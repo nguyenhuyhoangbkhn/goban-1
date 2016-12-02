@@ -23,6 +23,7 @@ gem "cocoon"
 gem "mini_magick"
 gem "carrierwave"
 gem "searchkick"
+gem 'tinymce-rails'
 group :development, :test do
   gem "byebug", platform: :mri
   gem "pry"

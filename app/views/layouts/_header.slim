@@ -1,22 +1,64 @@
-nav.navbar.navbar-inverse
-  .container-fluid
-    .navbar-header
-      = link_to "Hotel Review", root_path, class: "navbar-brand"
-    ul.nav.navbar-nav
-      - if user_signed_in?
-        li
-          = link_to "Profile", user_path(current_user)
-        li
-          = link_to "Settings", edit_user_path(current_user)
-        li
-          = link_to "Logout", destroy_user_session_path, method: :delete
-      - else
-        li= link_to "Sign Up", new_user_registration_path, class: "active"
-        li= link_to "Sign In", new_user_session_path, class: "active"
-
-    = form_tag search_hotels_path, method: :get, class: "navbar-form navbar-right", role: "search" do
-      .input-group
-        = text_field_tag :search, params[:search], class: "form-control"
-        .input-group-btn
-          button.btn.btn-default type="submit"
-            i.glyphicon.glyphicon-search
+.header
+  .header_top
+    .container
+      .row
+        .col-sm-6
+          .contactinfo
+            ul.nav.nav-pills
+              li
+                = link_to root_path do
+                  i.fa.fa-home
+                  |  Hotel Review
+              li
+                a[href="#"]
+                  i.fa.fa-envelope
+                  |  goban@gmail.com
+        .col-sm-6
+          .social-icons.pull-right
+            ul.nav.navbar-nav
+              li
+                a[href="#"]
+                  i.fa.fa-facebook
+              li
+                a[href="#"]
+                  i.fa.fa-twitter
+              li
+                a[href="#"]
+                  i.fa.fa-linkedin
+              li
+                a[href="#"]
+                  i.fa.fa-dribbble
+              li
+                a[href="#"]
+                  i.fa.fa-google-plus
+  .header-middle
+    .container
+      .row
+        .col-sm-8
+          .shop-menu.pull-left
+            ul.nav.navbar-nav
+              - if user_signed_in?
+                li
+                  = link_to "Profile", user_path(current_user)
+                li
+                  = link_to "Settings", edit_user_path(current_user)
+                li
+                  = link_to "Logout", destroy_user_session_path, method: :delete
+              - else
+                li
+                  = link_to new_user_registration_path, class: "active" do
+                    .span
+                      i.fa.fa-lock
+                      |  Sign Up
+                li
+                  = link_to new_user_session_path, class: "active" do
+                    .span
+                      i.fa.fa-lock
+                      |  Login
+        .col-sm-4
+          = form_tag search_hotels_path, method: :get, class: "navbar-form navbar-right", role: "search" do
+            .input-group
+              = text_field_tag :search, params[:search], class: "form-control"
+              .input-group-btn
+                button.btn.btn-default type="submit"
+                  i.glyphicon.glyphicon-search

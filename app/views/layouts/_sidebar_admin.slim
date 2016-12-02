@@ -1,19 +1,21 @@
-#sidebar-collapse.col-sm-3.col-lg-2.sidebar
-  ul.nav.menu
-    li.active
-      = link_to admin_hotels_path, class: "show-hotel" do
-        i.glyphicon.glyphicon-globe>
-        span DasBoard
-    li
-      = link_to admin_hotels_path, class: "show-hotel" do
-        i.glyphicon.glyphicon-link>
-        span Hotels
-    li
-      = link_to admin_admin_users_path do
-        i.glyphicon.glyphicon-link>
-        span AdminUsers
-    li
-      = link_to admin_users_path do
-        i.glyphicon.glyphicon-link>
-        span Users
-.clear-fix
+aside.main-sidebar
+  section.sidebar
+    ul.sidebar-menu
+      li.header
+      li
+        = link_to admin_hotels_path, class: "show-hotel" do
+          i.glyphicon.glyphicon-globe>
+          span DasBoard
+      li
+        = link_to admin_hotels_path, class: "show-hotel" do
+          i.glyphicon.glyphicon-link>
+          span Hotels
+      li
+        = link_to admin_admin_users_path do
+          i.glyphicon.glyphicon-link>
+          span AdminUsers
+      li
+        = link_to admin_users_path do
+          i.glyphicon.glyphicon-link>
+          span Users
+
