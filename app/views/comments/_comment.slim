@@ -4,18 +4,21 @@ br
   .col-md-12
     .form-group
       .col-sm-3
+        .avatar
+          - unless comment.user.avatar.nil?
+            = image_tag comment.user.avatar.picture, class: "img-circle", width: 70, height: 70
+        .name
+          strong = comment.user.name
+      .col-sm-8
         - unless  comment.picture.file.nil?
           = image_tag comment.picture, height: 150, with: 150
-      .col-sm-8
         .form-group
           .control-label
             = comment.content
-          span.timestamp
+          span.timestamp.pull-right
             br
-            = time_tag comment.created_at
-          .control-label
-            | post by :
-            strong=< comment.user.name
+            .text-muted
+              = time_tag comment.created_at
       .col-sm-1
         - if current_user == comment.user
           .dropdown

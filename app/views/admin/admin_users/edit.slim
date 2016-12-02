@@ -1,6 +1,13 @@
-h1 Editing admin_user
+ol.breadcrumb
+  li= link_to "Home", root_path
+  li= link_to "AdminUser", admin_admin_users_path
+  li.active Edit AdminUser
 
-== render 'form'
+.box.box-primary
+  .box-body
+    .row
+      .col-md-12
+        = render 'form'
 
-= link_to 'Back', admin_admin_users_path
-
+      .col-md-12
+        = link_to 'Back', admin_admin_users_path

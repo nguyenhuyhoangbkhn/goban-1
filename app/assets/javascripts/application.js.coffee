@@ -4,7 +4,6 @@
 #= require bootstrap
 #= require AdminLTE/app
 #= require select2/select2
-#= require goban/lumino.glyphs
 #= require cocoon
 #= require jquery.raty
 #= require_tree .

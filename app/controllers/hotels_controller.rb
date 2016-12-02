@@ -13,6 +13,7 @@ class HotelsController < ApplicationController
 
   def index
     @hotels = Hotel.all
+    @top_hotels = Hotel.joins(:reviews).group(:hotel_id).order("avg(reviews.rating) desc").limit(1)
   end
 
   # GET /hotels/1

@@ -1,0 +1,35 @@
+/! Main Header
+header.main-header
+  = link_to root_path, class: "logo" do
+   span.logo-mini
+     b
+     | G
+   span.logo-lg
+     b
+     | Goban
+
+  nav.navbar.navbar-static-top role="navigation"
+    a.sidebar-toggle data-toggle="offcanvas" href="#" role="button"
+      span.sr-only Toggle navigation
+    .navbar-custom-menu
+      ul.nav.navbar-nav
+        li.dropdown.user.user-menu
+          a.dropdown-toggle data-toggle="dropdown" href="#"
+            = current_admin_user.name
+          ul.dropdown-menu
+            li.user-header
+              - unless current_admin_user.avatar.present?
+                img.img-circle src="http://i.imgur.com/QCTLZTO.jpg" alt="User Image"
+              - else
+                = image_tag current_admin_user.avatar.picture, class: "user-image"
+              p
+                |
+                = current_admin_user.email
+                small = time_tag current_admin_user.try(:birthday)
+            li.user-footer
+              .pull-left
+                .btn.btn-default.btn-flat
+                  = link_to "Profile", admin_admin_user_path(current_admin_user)
+              .pull-right
+                = link_to destroy_admin_user_session_path, method: :delete do
+                  .btn.btn-default.btn-flat =  t".sign_out"
