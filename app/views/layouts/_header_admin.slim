@@ -33,3 +33,13 @@ header.main-header
               .pull-right
                 = link_to destroy_admin_user_session_path, method: :delete do
                   .btn.btn-default.btn-flat =  t".sign_out"
+        .col-sm-4
+          button [
+            class="btn btn-default js-btn-selected-item"
+            type="button"
+            data-toggle="modal"
+            data-target="#search"
+          ]
+            i.glyphicon.glyphicon-search
+
+= render partial: "admin/hotels/search"

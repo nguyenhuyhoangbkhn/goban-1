@@ -56,9 +56,12 @@
                       i.fa.fa-lock
                       |  Login
         .col-sm-4
-          = form_tag search_hotels_path, method: :get, class: "navbar-form navbar-right", role: "search" do
-            .input-group
-              = text_field_tag :search, params[:search], class: "form-control"
-              .input-group-btn
-                button.btn.btn-default type="submit"
-                  i.glyphicon.glyphicon-search
+          button [
+            class="btn btn-default js-btn-selected-item"
+            type="button"
+            data-toggle="modal"
+            data-target="#search"
+          ]
+            i.glyphicon.glyphicon-search
+
+= render partial: "shared/search"
