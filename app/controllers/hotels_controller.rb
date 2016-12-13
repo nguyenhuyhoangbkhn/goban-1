@@ -3,16 +3,11 @@ class HotelsController < ApplicationController
 
   # GET /hotels
   # GET /hotels.json
-  def search
-    if params[:search].present?
-      @hotels = Hotel.search(params[:search])
-    else
-      @hotels = Hotel.all
-    end
-  end
 
   def index
-    @hotels = Hotel.all
+    result = HotelSearch.new params
+    @hotels = result.hotels
+    # @hotels = Hotel.all
     @top_hotels = Hotel.joins(:reviews).group(:hotel_id).order("avg(reviews.rating) desc").limit(1)
   end
 

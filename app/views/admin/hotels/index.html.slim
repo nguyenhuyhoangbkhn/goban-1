@@ -32,7 +32,6 @@ ol.breadcrumb
                 td.star-rating data-score="#{hotel.avg_rate}"
                 td = link_to 'Edit', edit_admin_hotel_path(hotel), class: "show-hotel"
                 td = link_to 'Destroy', admin_hotel_path(hotel), data: { confirm: 'Are you sure?' }, method: :delete
-        .pull-right = paginate @hotels
       .col-sm-12
         .btn.btn-default style="margin-top: 50px;"
           = link_to 'New Hotel', new_admin_hotel_path, class: "show-hotel"

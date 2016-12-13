@@ -4,7 +4,8 @@ class Admin::HotelsController < ApplicationController
   before_action :authenticate_admin_user!
 
   def index
-    @hotels = Hotel.page(params[:page]).per params[:per_page]
+    result = HotelSearch.new params
+    @hotels = result.hotels
   end
 
   def search
