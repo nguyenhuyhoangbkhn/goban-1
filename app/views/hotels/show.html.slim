@@ -28,16 +28,16 @@
           span.sr-only Next
   .row
     .col-md-12
-      .row
+      .row.form-intro-detail-hotel
         .col-md-6
           ul.list-inline
-            li
-              span
-                i.glyphicon.glyphicon-map-marker
-              - @hotel.destination_addresses.each do |address|
-                =< address.village.name
-                |  |
-                =< address.address
+              li
+                span
+                  i.glyphicon.glyphicon-map-marker
+                - @hotel.destination_addresses.each do |address|
+                  =< address.village.name
+                  |  |
+                  =< address.address
           ul.list-inline
             li
               span
@@ -66,7 +66,7 @@
                 i.fa.fa-home
               | Count Room:
               =< @hotel.countRoom
-    .col-md-12 style="margin-bottom: 30px;"
+    .col-md-12.form-intro-detail-hotel style="margin-bottom: 30px;"
       span
         i.fa.fa-info-circle
       | Introduction about hotel
@@ -74,6 +74,7 @@
       .text-intro style="margin-top: 10px;"
         =< @hotel.introduction.html_safe
 
+  hr
   .row style="margin-top: 20px;"
     .col-sm-6
       .form-group

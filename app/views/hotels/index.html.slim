@@ -1,5 +1,5 @@
 #myCarousel.carousel.slide data-ride="carousel"
-  .carousel-inner role="listbox"
+  .carousel-inner.form-slide-img role="listbox"
     - unless @top_hotels.first.attachments.nil?
       .item.active
         = image_tag @top_hotels.first.attachments.first.picture, class: "img-thumbnail"
@@ -22,8 +22,8 @@
   .col-sm-1
   .col-sm-10
     - @hotels.each do |hotel|
-      .col-sm-3
-        .well.well-sm
+      .col-sm-4
+        .well.well-sm.item-hotel
           = image_tag hotel.attachments.first.picture,  class: "img-responsive img-home-content",
             alt:"Cinque Terre"
           .title-hotel

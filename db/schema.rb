@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20161125050433) do
 
-  create_table "admin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 20161125050433) do
     t.string   "name"
     t.datetime "birthday"
     t.integer  "role"
-    t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "attachments", force: :cascade do |t|
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
@@ -49,16 +49,16 @@ ActiveRecord::Schema.define(version: 20161125050433) do
     t.string   "attachable_type"
   end
 
-  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "content",    limit: 65535
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
     t.integer  "user_id"
     t.integer  "hotel_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "picture"
   end
 
-  create_table "destination_addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "destination_addresses", force: :cascade do |t|
     t.string   "name"
     t.integer  "village_id"
     t.string   "address"
@@ -68,30 +68,30 @@ ActiveRecord::Schema.define(version: 20161125050433) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "districts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "districts", force: :cascade do |t|
     t.string   "name"
     t.string   "ordinate"
     t.integer  "district_kind"
     t.integer  "provincial_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["provincial_id"], name: "index_districts_on_provincial_id", using: :btree
+    t.index ["provincial_id"], name: "index_districts_on_provincial_id"
   end
 
-  create_table "hotels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "hotels", force: :cascade do |t|
     t.string   "name"
     t.integer  "countRoom"
-    t.text     "introduction",  limit: 65535
+    t.text     "introduction"
     t.string   "phone_number"
     t.string   "website"
     t.string   "score_average"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "price"
     t.string   "hotel_kind"
   end
 
-  create_table "provincials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "provincials", force: :cascade do |t|
     t.string   "name"
     t.string   "ordinate"
     t.integer  "province_kind"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20161125050433) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "rate_hotels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "rate_hotels", force: :cascade do |t|
     t.integer  "hotel_id"
     t.integer  "user_id"
     t.integer  "admin_user_id"
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20161125050433) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "reviews", force: :cascade do |t|
     t.integer  "rating"
     t.integer  "hotel_id"
     t.integer  "user_id"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20161125050433) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -137,18 +137,18 @@ ActiveRecord::Schema.define(version: 20161125050433) do
     t.string   "job"
     t.string   "edu"
     t.datetime "birthday"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "villages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "villages", force: :cascade do |t|
     t.string   "name"
     t.string   "ordinate"
     t.integer  "village_kind"
     t.integer  "district_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["district_id"], name: "index_villages_on_district_id", using: :btree
+    t.index ["district_id"], name: "index_villages_on_district_id"
   end
 
 end

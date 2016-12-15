@@ -3,11 +3,11 @@
 # Table name: destination_addresses
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
+#  name       :string
 #  village_id :integer
-#  address    :string(255)
+#  address    :string
 #  hotel_id   :integer
-#  user_id    :string(255)
+#  user_id    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

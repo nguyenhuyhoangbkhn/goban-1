@@ -1,5 +1,5 @@
 .modal.fade aria-hidden="true" aria-labelledby="myModalLabel" id="search" role="dialog" tabindex="-1"
-  .modal-dialog
+  .form-modal-search
     .modal-content
       .modal-header
         button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
@@ -28,7 +28,7 @@
                           params[:countRoom], class: "form-control"
 
                 .row
-                  .col-md-12
+                  .col-md-6
                     .form-group
                       .col-sm-3
                         label.control-label = t(".price")
@@ -38,7 +38,7 @@
                         | ~
                         = text_field_tag :end_price, params[:end_price],
                           class: "form-control end-range js-datepicker"
-
+                  .col-md-6
                     .form-group
                       .col-sm-3
                         label.control-label = t(".score")

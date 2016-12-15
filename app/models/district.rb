@@ -3,8 +3,8 @@
 # Table name: districts
 #
 #  id            :integer          not null, primary key
-#  name          :string(255)
-#  ordinate      :string(255)
+#  name          :string
+#  ordinate      :string
 #  district_kind :integer
 #  provincial_id :integer
 #  created_at    :datetime         not null

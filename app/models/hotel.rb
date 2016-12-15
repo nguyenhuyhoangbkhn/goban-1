@@ -3,16 +3,16 @@
 # Table name: hotels
 #
 #  id            :integer          not null, primary key
-#  name          :string(255)
+#  name          :string
 #  countRoom     :integer
-#  introduction  :text(65535)
-#  phone_number  :string(255)
-#  website       :string(255)
-#  score_average :string(255)
+#  introduction  :text
+#  phone_number  :string
+#  website       :string
+#  score_average :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  price         :integer
-#  hotel_kind    :string(255)
+#  hotel_kind    :string
 #
 
 class Hotel < ApplicationRecord

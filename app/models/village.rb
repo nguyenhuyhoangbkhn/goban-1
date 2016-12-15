@@ -3,8 +3,8 @@
 # Table name: villages
 #
 #  id           :integer          not null, primary key
-#  name         :string(255)
-#  ordinate     :string(255)
+#  name         :string
+#  ordinate     :string
 #  village_kind :integer
 #  district_id  :integer
 #  created_at   :datetime         not null
