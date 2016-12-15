@@ -3,13 +3,17 @@
 }
 
 .footer-bottom  {
-    background: none repeat scroll 0 0 #F0F0E9;
+    background: none repeat scroll 0 0 #9999FF !important;
 }
 .header-middle {
   border-bottom: 1px solid #eeeeee;
 }
 .footer-format{
-    line-height: 50px;
-    font-size: 21px;
+    line-height: 100px;
+    font-size: 36px;
+    
 }
-
+.form-contact-footer{
+	display:flex;
+	flex-direction:column;
+}
