@@ -77,8 +77,7 @@
           .col-sm-12
             - if @hotel.new_record?
               #star-rating
-            - else
-              .star-rating.js-update-rate data-score="#{@hotel.reviews.where(admin_user: current_admin_user).first.rating}"
+           
       .row
         .col-sm-12
           .btn.btn-defautl.btn-primary style="margin-top: 50px;"

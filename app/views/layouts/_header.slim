@@ -2,66 +2,47 @@
   .header_top
     .container
       .row
-        .col-sm-6
+        .col-sm-7
           .contactinfo
             ul.nav.nav-pills
               li.font-home-hotel
                 = link_to root_path do
                   i.fa.fa-home
                   |  Hotel Review
-              li.font-header-gmail
-                a[href="#"]
-                  i.fa.fa-envelope
-                  |  goban@gmail.com
-        .col-sm-6
-          .social-icons.pull-right
-            ul.nav.navbar-nav
-              li
-                a[href="#"]
-                  i.fa.fa-facebook
-              li
-                a[href="#"]
-                  i.fa.fa-twitter
-              li
-                a[href="#"]
-                  i.fa.fa-linkedin
-              li
-                a[href="#"]
-                  i.fa.fa-dribbble
-              li
-                a[href="#"]
-                  i.fa.fa-google-plus
-  .header-middle
-    .container
-      .row
-        .col-sm-8
-          .shop-menu.pull-left
+              button [
+                class="btn-search-form glyphicon.glyphicon-search"
+                type="button"
+                data-toggle="modal"
+                data-target="#search"
+              ]
+                i Search Hotel
+        .col-sm-5
+          .social-icons.pull-right.form_right_menu
             ul.nav.navbar-nav
               - if user_signed_in?
-                li
+                li.font-menu
                   = link_to "Profile", user_path(current_user)
-                li
+                li.font-menu
                   = link_to "Settings", edit_user_path(current_user)
-                li
+                li.font-menu
                   = link_to "Logout", destroy_user_session_path, method: :delete
               - else
-                li
+                li.font-menu
                   = link_to new_user_registration_path, class: "active" do
                     .span
                       i.fa.fa-lock
                       |  Sign Up
-                li
+                li.font-menu
                   = link_to new_user_session_path, class: "active" do
                     .span
                       i.fa.fa-lock
                       |  Login
-        .col-sm-4
-          button [
-            class="btn-search-form js-btn-selected-item"
-            type="button"
-            data-toggle="modal"
-            data-target="#search"
-          ]
-            i.glyphicon.glyphicon-search Search Hotel
+      
+  
 
 = render partial: "shared/search"
+br
+.container
+  .form-title 
+    | Review Hotel/ By Goban Team
+  hr

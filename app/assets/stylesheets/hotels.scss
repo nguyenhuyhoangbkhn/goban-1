@@ -313,7 +313,7 @@ li.act > a:hover,  li.act > a:focus , li.act > a:visited{
     border-image: none;
 }
 .font-home-hotel{
-  font-size: 24px;
+  font-size: 28px;
 }
 .font-header-gmail{
   line-height: 34px;
@@ -325,9 +325,6 @@ li.act > a:hover,  li.act > a:focus , li.act > a:visited{
   background-color: #F0F0E9;
 }
 .form-slide-img{
-  padding-top:5px;
-  padding-left:15%;
-  padding-right:15%;
 }
 .item-hotel{
     padding-top: 5% !important;
@@ -339,16 +336,15 @@ li.act > a:hover,  li.act > a:focus , li.act > a:visited{
   font-size:18px !important;
 }
 .btn-search-form{
-    margin-top: 10px;
-    float: right;
+    margin-top: 13px;
     font-size: 18px;
     background-color: #fff;
     border: 1px gray solid;
     padding-left: 15px;
     padding-right: 15px;
     font-size: 20px;
-    height: 30px;
-    border-radius: 15px;
+    height: 36px;
+    border-radius: 5px;
 }
 .form-modal-search{
   padding-top:75px;
@@ -360,4 +356,23 @@ li.act > a:hover,  li.act > a:focus , li.act > a:visited{
 }
 .title-search button{
   float: right;
+}
+.font-menu{
+  font-size: 18px;
+}
+.form_right_menu{
+  padding-top: 5px;
+}
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display: block;
+    padding-top: 5px;
+    width: 100% !important;
+    height: auto;
+    line-height: 1;
+}
+
+.form-title {
+  height: 30px;
+  width: 100%;
+  font-size: 28px;
 }
